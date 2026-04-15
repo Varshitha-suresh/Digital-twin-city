@@ -1,4 +1,4 @@
-# 🏛️ Mysuru 3D Digital Twin: Integrated Command Shell v3.0
+# 🏛️ Digital Twin City
 
 [![Project Status](https://img.shields.io/badge/Deployment-INTEGRATED-00bcd4?style=for-the-badge&logoColor=white)]
 [![Engine Status](https://img.shields.io/badge/Sim--Engine-OPERATIONAL-4caf50?style=for-the-badge&logoColor=white)]
