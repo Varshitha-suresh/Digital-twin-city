@@ -1,9 +1,9 @@
 # 🏛️ Mysuru 3D Digital Twin: Integrated Command Shell v3.0
 
-[![Project Status](https://img.shields.io/badge/Deployment-INTEGRATED-00bcd4?style=for-the-badge&logoColor=white)](https://github.com/bharathkumar000/smart-city-clone)
-[![Engine Status](https://img.shields.io/badge/Sim--Engine-OPERATIONAL-4caf50?style=for-the-badge&logoColor=white)](https://github.com/bharathkumar000/smart-city-clone)
-[![GIS Level](https://img.shields.io/badge/GIS_Layer-3D--ACTIVE-ff9800?style=for-the-badge&logoColor=white)](https://github.com/bharathkumar000/smart-city-clone)
-[![Environment](https://img.shields.io/badge/Env-PROD--READY-e91e63?style=for-the-badge&logoColor=white)](https://github.com/bharathkumar000/smart-city-clone)
+[![Project Status](https://img.shields.io/badge/Deployment-INTEGRATED-00bcd4?style=for-the-badge&logoColor=white)]
+[![Engine Status](https://img.shields.io/badge/Sim--Engine-OPERATIONAL-4caf50?style=for-the-badge&logoColor=white)]
+[![GIS Level](https://img.shields.io/badge/GIS_Layer-3D--ACTIVE-ff9800?style=for-the-badge&logoColor=white)]
+[![Environment](https://img.shields.io/badge/Env-PROD--READY-e91e63?style=for-the-badge&logoColor=white)]
 
 > *"The future of urban governance is not in papers, but in pixels."* — **Global Urban Planning Initiative**
 
@@ -105,12 +105,3 @@ npm run dev
 ```
 
 ---
-
-## 👤 AUTHOR & LEAD ENGINEER
-
-**Bharath Kumara**  
-*Lead GIS Engineer & Digital Twin Architect*  
-
----
-
-> This project is a contribution to the **Digital India / Smart Cities Mission**. For collaborators: please follow the standard PR workflow and ensure all 3D layers are optimized for WebGL.
