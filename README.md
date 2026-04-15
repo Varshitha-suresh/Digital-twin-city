@@ -1,7 +1,5 @@
 # 🏛️ Mysuru 3D Digital Twin: Integrated Command Shell v3.0
 
-![Banner](./assets/banner.png)
-
 [![Project Status](https://img.shields.io/badge/Deployment-INTEGRATED-00bcd4?style=for-the-badge&logoColor=white)](https://github.com/bharathkumar000/smart-city-clone)
 [![Engine Status](https://img.shields.io/badge/Sim--Engine-OPERATIONAL-4caf50?style=for-the-badge&logoColor=white)](https://github.com/bharathkumar000/smart-city-clone)
 [![GIS Level](https://img.shields.io/badge/GIS_Layer-3D--ACTIVE-ff9800?style=for-the-badge&logoColor=white)](https://github.com/bharathkumar000/smart-city-clone)
