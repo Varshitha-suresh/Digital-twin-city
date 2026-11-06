@@ -676,6 +676,7 @@ const App = () => {
           'terrain-grid-source': { type: 'geojson', data: '/data/mysuru_terrain_grid.json' },
           'blast-circle': { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
           'emergency-path': { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
+          'traffic-cordon-source': { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
           'mysuru-encroachments': { type: 'geojson', data: '/data/mysuru_encroachments.json' }
         },
         layers: [
@@ -911,6 +912,18 @@ const App = () => {
             source: 'emergency-path',
             layout: { 'visibility': 'none' },
             paint: { 'line-color': '#ffffff', 'line-width': 2.5, 'line-dasharray': [2, 2] }
+          },
+          {
+            id: 'traffic-cordon-fill',
+            type: 'circle',
+            source: 'traffic-cordon-source',
+            paint: {
+              'circle-radius': ['coalesce', ['get', 'radiusPixels'], 80],
+              'circle-color': '#f59e0b',
+              'circle-opacity': 0.18,
+              'circle-stroke-width': 2.5,
+              'circle-stroke-color': '#ef4444'
+            }
           },
           {
             id: 'selected-parcel-extrusion',
@@ -1418,6 +1431,37 @@ const App = () => {
     }
   }, [showPoliceStations, isEmergencyActive, mapLoaded]);
 
+  // Synchronize Subsurface Pipelines and Traffic Cordon on Zoning Tab changes
+  useEffect(() => {
+    if (!map.current || !mapLoaded) return;
+
+    // Show underground pipelines and sewer lines when user views 'utilities' tab in zoning assessment
+    const isUtilitiesTab = isDemolishMode && impactData && zoningAuditTab === 'utilities';
+    if (map.current.getLayer('utility-pipes')) {
+      const targetOpacity = isXrayEnabled ? 1 : (isUtilitiesTab ? 0.95 : 0);
+      map.current.setPaintProperty('utility-pipes', 'line-opacity', targetOpacity);
+    }
+
+    // Update traffic cordon layer
+    const trafficSource = map.current.getSource('traffic-cordon-source');
+    if (trafficSource) {
+      if (isUtilitiesTab && selectedBuilding?.lngLat) {
+        trafficSource.setData({
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [selectedBuilding.lngLat.lng, selectedBuilding.lngLat.lat]
+          },
+          properties: {
+            radiusPixels: 95
+          }
+        });
+      } else {
+        trafficSource.setData({ type: 'FeatureCollection', features: [] });
+      }
+    }
+  }, [isDemolishMode, impactData, zoningAuditTab, isXrayEnabled, selectedBuilding, mapLoaded]);
+
   // Dynamic Google Maps-style shortest & fastest route calculation
   useEffect(() => {
     if (!map.current || !mapLoaded || !isEmergencyActive) return;
@@ -1916,18 +1960,28 @@ const App = () => {
                         <div className="zoning-card-header">
                           <Car size={14} color="#ef4444" /> Traffic Flow & Road Disruption
                         </div>
-                        <div className={`traffic-status-banner ${impactData.traffic.congestionLevel.toLowerCase()}`}>
-                          <span>Bottleneck Risk: {impactData.traffic.congestionLevel}</span>
-                          <span>{impactData.traffic.delayMinutes}</span>
+                        <div className={`traffic-status-banner ${(impactData.traffic?.congestionLevel || 'moderate').toLowerCase()}`}>
+                          <span>Bottleneck Risk: {impactData.traffic?.congestionLevel || 'MODERATE'}</span>
+                          <span>{impactData.traffic?.delayMinutes || '+15 mins'}</span>
                         </div>
                         <div style={{ fontSize: '0.72rem', color: '#475569', marginBottom: '6px' }}>
-                          <strong>Affected Sector:</strong> {impactData.traffic.corridorName}
+                          <strong>Affected Sector:</strong> {impactData.traffic?.corridorName || 'Central Sector'}
                         </div>
                         <div style={{ fontSize: '0.72rem', color: '#475569', marginBottom: '6px' }}>
-                          <strong>Diversion Cordon:</strong> {impactData.traffic.diversionRadius}
+                          <strong>Diversion Cordon:</strong> {impactData.traffic?.diversionRadius || '120m Perimeter'}
                         </div>
-                        <div style={{ fontSize: '0.70rem', color: '#1e293b', background: '#fff', padding: '8px', borderRadius: '6px', border: '1px solid #e2e8f0' }}>
-                          <strong>Rerouting Strategy:</strong> {impactData.suggestedReroute}
+                        <div style={{ fontSize: '0.70rem', color: '#1e293b', background: '#fff', padding: '8px', borderRadius: '6px', border: '1px solid #e2e8f0', marginBottom: '10px' }}>
+                          <strong>Rerouting Strategy:</strong> {impactData.suggestedReroute || impactData.traffic?.reroutePlan || 'Clockwise ward perimeter detour'}
+                        </div>
+
+                        {/* Interactive Subsurface & Traffic Toggle */}
+                        <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '8px 10px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                          <span style={{ fontSize: '0.70rem', fontWeight: 700, color: '#334155' }}>
+                            Subsurface Pipes & Traffic Cordon
+                          </span>
+                          <span style={{ fontSize: '0.68rem', color: '#059669', fontWeight: 800, background: '#ecfdf5', padding: '2px 6px', borderRadius: '4px' }}>
+                            ✓ Active on 3D Map
+                          </span>
                         </div>
                       </div>
                     </div>
