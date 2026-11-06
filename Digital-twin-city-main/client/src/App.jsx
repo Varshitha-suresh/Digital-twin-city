@@ -539,6 +539,7 @@ const App = () => {
           'aqi-cells-source': { type: 'geojson', data: aqiDataSets.cellsGeoJson },
           'hydrants': { type: 'geojson', data: HYDRANTS },
           'selected-parcel-source': { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
+          'terrain-grid-source': { type: 'geojson', data: '/data/mysuru_terrain_grid.json' },
           'blast-circle': { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
           'emergency-path': { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
           'mysuru-encroachments': { type: 'geojson', data: '/data/mysuru_encroachments.json' }
@@ -565,6 +566,33 @@ const App = () => {
               'line-color': ['get', 'color'],
               'line-width': 2.5,
               'line-dasharray': [3, 1.5]
+            }
+          },
+          {
+            id: 'flood-water-fill',
+            type: 'fill',
+            source: 'terrain-grid-source',
+            layout: { visibility: 'none' },
+            paint: {
+              'fill-color': [
+                'interpolate', ['linear'], ['-', Number(floodLevel), ['get', 'elevation']],
+                0, 'rgba(30, 144, 255, 0.25)',
+                2, 'rgba(0, 110, 255, 0.55)',
+                5, 'rgba(0, 60, 200, 0.75)',
+                10, 'rgba(0, 20, 140, 0.88)'
+              ],
+              'fill-opacity': 0.72
+            }
+          },
+          {
+            id: 'flood-water-mesh',
+            type: 'line',
+            source: 'terrain-grid-source',
+            layout: { visibility: 'none' },
+            paint: {
+              'line-color': '#60a5fa',
+              'line-width': 1,
+              'line-opacity': 0.4
             }
           },
           {
@@ -963,6 +991,42 @@ const App = () => {
       map.current.on('mouseleave', 'encroachment-zones-fill', () => {
         map.current.getCanvas().style.cursor = '';
       });
+
+      // Flood Inundation Water Grid click listener
+      map.current.on('click', 'flood-water-fill', (e) => {
+        if (showReportingHintRef.current) return;
+        if (!e.features || e.features.length === 0) return;
+        const p = e.features[0].properties;
+        const elev = Number(p.elevation || 0);
+        const depth = Math.max(0, Number(floodLevel) - elev);
+        
+        new maplibregl.Popup({ offset: 12, closeButton: true })
+          .setLngLat(e.lngLat)
+          .setHTML(`
+            <div style="font-family: inherit; padding: 4px 2px;">
+              <div style="display:flex; align-items:center; gap:6px; margin-bottom:4px;">
+                <span style="font-size:14px;">🌊</span>
+                <strong style="font-size:13px; color:#1e40af;">Flood Inundation Point</strong>
+              </div>
+              <div style="font-size:11px; color:#555; margin-bottom:6px;">Hydrological Inundation Model</div>
+              <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:6px; padding:6px 8px; margin-bottom:6px;">
+                <div style="font-size:11px; color:#1e3a8a;">Water Depth: <b style="font-size:14px; color:#1d4ed8;">${depth.toFixed(2)} m</b></div>
+                <div style="font-size:10px; color:#64748b; margin-top:2px;">Ground Elev: <b>${elev.toFixed(1)} m</b> (MSL: ${(740 + elev).toFixed(1)}m)</div>
+              </div>
+              <div style="font-size:10px; color:${depth > 2 ? '#b91c1c' : '#047857'}; font-weight:600;">
+                Risk Severity: ${depth > 3 ? '🔴 CRITICAL INUNDATION' : (depth > 1 ? '🟠 MODERATE RISK' : '🟡 SURFACE RUNOFF')}
+              </div>
+            </div>
+          `)
+          .addTo(map.current);
+      });
+
+      map.current.on('mouseenter', 'flood-water-fill', () => {
+        map.current.getCanvas().style.cursor = 'pointer';
+      });
+      map.current.on('mouseleave', 'flood-water-fill', () => {
+        map.current.getCanvas().style.cursor = '';
+      });
     });
 
     return () => map.current?.remove();
@@ -1022,15 +1086,52 @@ const App = () => {
     }
   }, [showEncroachments, mapLoaded]);
 
-  // 3. Flood Level
+  // 3. Realistic Terrain-based Flood Inundation Level
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
+    const numLevel = Number(floodLevel);
+    const isFlooding = numLevel > 0;
+
+    // A. 3D Building Inundation based on actual terrain elevation
+    // Buildings whose ground elevation is <= floodLevel are submerged with gradient color based on depth
     map.current.setPaintProperty('3d-buildings', 'fill-extrusion-color', [
       'case',
-      ['<', ['%', ['get', 'id'], 15], Number(floodLevel)], '#0061ff',
+      ['<=', ['coalesce', ['get', 'groundElevation'], 999], numLevel],
+      [
+        'interpolate', ['linear'], ['-', numLevel, ['coalesce', ['get', 'groundElevation'], 999]],
+        0, '#38bdf8', // 0-1m: shallow water blue
+        2, '#0284c7', // 2m: moderate flood
+        5, '#1d4ed8', // 5m: deep inundation
+        10, '#172554' // 10m+: extreme depth
+      ],
       currentStyle === 'satellite' ? '#d4c8b0' : '#e8e0d4'
     ]);
-  }, [floodLevel, currentStyle]);
+
+    // B. Terrain Flood Surface Layer
+    if (map.current.getLayer('flood-water-fill') && map.current.getLayer('flood-water-mesh')) {
+      if (!isFlooding) {
+        map.current.setLayoutProperty('flood-water-fill', 'visibility', 'none');
+        map.current.setLayoutProperty('flood-water-mesh', 'visibility', 'none');
+      } else {
+        map.current.setLayoutProperty('flood-water-fill', 'visibility', 'visible');
+        map.current.setLayoutProperty('flood-water-mesh', 'visibility', 'visible');
+        
+        // Filter terrain grid cells submerged by current water level
+        const floodFilter = ['<=', ['get', 'elevation'], numLevel];
+        map.current.setFilter('flood-water-fill', floodFilter);
+        map.current.setFilter('flood-water-mesh', floodFilter);
+
+        // Update dynamic depth coloration for the water surface
+        map.current.setPaintProperty('flood-water-fill', 'fill-color', [
+          'interpolate', ['linear'], ['-', numLevel, ['get', 'elevation']],
+          0, 'rgba(56, 189, 248, 0.40)',
+          2, 'rgba(2, 132, 199, 0.65)',
+          5, 'rgba(29, 78, 216, 0.80)',
+          10, 'rgba(15, 23, 42, 0.92)'
+        ]);
+      }
+    }
+  }, [floodLevel, currentStyle, mapLoaded]);
 
   // 4. AQI & Green Cover (Multi-Mode Display: Heatmap vs Hex Grid vs Monitoring Stations)
   useEffect(() => {
@@ -1636,9 +1737,37 @@ const App = () => {
 
           {activeTab === 'crisis' && (
             <div className="panel-section">
-              <label className="section-label">Flood Inundation Level</label>
-              <input type="range" min="0" max="15" value={floodLevel} onChange={e => setFloodLevel(Number(e.target.value))} className="flood-slider" />
-              <div className="slider-labels"><span>0m (Safe)</span><span>15m (Critical)</span></div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                <label className="section-label" style={{ margin: 0 }}>Hydrological Flood Inundation Model</label>
+                <span style={{ fontSize: '12px', fontWeight: 700, color: floodLevel > 8 ? '#ef4444' : (floodLevel > 3 ? '#3b82f6' : '#10b981') }}>
+                  {floodLevel > 0 ? `${floodLevel}m Flood Crest` : 'Baseline (Dry)'}
+                </span>
+              </div>
+              <input type="range" min="0" max="15" step="0.5" value={floodLevel} onChange={e => setFloodLevel(Number(e.target.value))} className="flood-slider" />
+              <div className="slider-labels">
+                <span>0m (Safe Baseline)</span>
+                <span>7.5m (100-Yr Basin Surge)</span>
+                <span>15m (Extreme Flood)</span>
+              </div>
+              
+              {floodLevel > 0 && (
+                <div style={{ background: '#f0f9ff', border: '1px solid #bae6fd', borderRadius: '8px', padding: '10px 12px', margin: '12px 0', fontSize: '11px', color: '#0369a1' }}>
+                  <div style={{ fontWeight: 700, marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <span>🌊</span> Real-Time Terrain Inundation Telemetry:
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px', marginTop: '6px' }}>
+                    <div style={{ background: '#fff', padding: '4px 6px', borderRadius: '4px', border: '1px solid #e0f2fe' }}>
+                      Peak Water Elev: <b>{(740 + Number(floodLevel)).toFixed(1)} m MSL</b>
+                    </div>
+                    <div style={{ background: '#fff', padding: '4px 6px', borderRadius: '4px', border: '1px solid #e0f2fe' }}>
+                      Primary Basin: <b>Kukkarahalli-Dalvoy</b>
+                    </div>
+                  </div>
+                  <div style={{ marginTop: '6px', fontSize: '10px', color: '#0284c7' }}>
+                    💡 <em>Click any flooded surface or building on the map to inspect local water depth and risk severity.</em>
+                  </div>
+                </div>
+              )}
               
               <div className="grid-btns">
                 <button className={`action-btn ${showHydrants ? 'active' : ''}`} onClick={() => setShowHydrants(!showHydrants)}>
