@@ -1,0 +1,2102 @@
+[
+  {
+    "id": 43172350,
+    "name": "Maharaja College Centenary Hall",
+    "type": "school",
+    "category": "yes",
+    "coords": [
+      76.641198,
+      12.303701
+    ]
+  },
+  {
+    "id": 51683628,
+    "name": "Central Institute of Indian Languages",
+    "type": "school",
+    "category": "yes",
+    "coords": [
+      76.619733,
+      12.319298
+    ]
+  },
+  {
+    "id": 143938078,
+    "name": "JSS Ayurveda College",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.694931,
+      12.290064
+    ]
+  },
+  {
+    "id": 155408500,
+    "name": "Civil Engineering Department",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.61326,
+      12.314493
+    ]
+  },
+  {
+    "id": 155412390,
+    "name": "Mess Block",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.613505,
+      12.311227
+    ]
+  },
+  {
+    "id": 193439986,
+    "name": "Karnataka Police Academy",
+    "type": "school",
+    "category": "yes",
+    "coords": [
+      76.664198,
+      12.317004
+    ]
+  },
+  {
+    "id": 242454055,
+    "name": "Government Ayurveda Medical College",
+    "type": "hospital",
+    "category": "yes",
+    "coords": [
+      76.651611,
+      12.314949
+    ]
+  },
+  {
+    "id": 257341313,
+    "name": "Excel Public School",
+    "type": "school",
+    "category": "yes",
+    "coords": [
+      76.577422,
+      12.346112
+    ]
+  },
+  {
+    "id": 294117076,
+    "name": "JSS Law College",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.629516,
+      12.295903
+    ]
+  },
+  {
+    "id": 309508130,
+    "name": "Sadvidya High School and College",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.647731,
+      12.306213
+    ]
+  },
+  {
+    "id": 310012024,
+    "name": "Vidyavardhaka PU College",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.627845,
+      12.288844
+    ]
+  },
+  {
+    "id": 312018292,
+    "name": "Sunanda School",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.637868,
+      12.322461
+    ]
+  },
+  {
+    "id": 312037452,
+    "name": "Department of Studies in Physics",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.62093,
+      12.309822
+    ]
+  },
+  {
+    "id": 312037453,
+    "name": "Department of Studies in Chemistry",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.62105,
+      12.311048
+    ]
+  },
+  {
+    "id": 312037454,
+    "name": "Department of Studies in Microbiology",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.622097,
+      12.31113
+    ]
+  },
+  {
+    "id": 312037455,
+    "name": "Department of Studies in Jainology and Prakrit",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.621819,
+      12.31194
+    ]
+  },
+  {
+    "id": 312037457,
+    "name": "Department of Computer Science",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.622591,
+      12.310809
+    ]
+  },
+  {
+    "id": 312037459,
+    "name": "Department of Studies in Commerce",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.623272,
+      12.309317
+    ]
+  },
+  {
+    "id": 312037460,
+    "name": "Department of Studies in Statistics, Law",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.623031,
+      12.309559
+    ]
+  },
+  {
+    "id": 312037461,
+    "name": "Educational Multimedia Research Center",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.622218,
+      12.309594
+    ]
+  },
+  {
+    "id": 312038287,
+    "name": "Mysore University Library",
+    "type": "school",
+    "category": "yes",
+    "coords": [
+      76.623535,
+      12.311794
+    ]
+  },
+  {
+    "id": 312038290,
+    "name": "Computer Center",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.623442,
+      12.311479
+    ]
+  },
+  {
+    "id": 312038297,
+    "name": "Nalvadi Krishnaraja Wodeyar Bhavana",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.62487,
+      12.313859
+    ]
+  },
+  {
+    "id": 312174849,
+    "name": "Humanities Block",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.62344,
+      12.310536
+    ]
+  },
+  {
+    "id": 312174851,
+    "name": "Department of Studies in Botany",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.620978,
+      12.312085
+    ]
+  },
+  {
+    "id": 312174852,
+    "name": "Department of Studies in Zoology",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.620984,
+      12.311836
+    ]
+  },
+  {
+    "id": 312174853,
+    "name": "Deaprtment of Studies in Earth Science",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.620951,
+      12.313156
+    ]
+  },
+  {
+    "id": 312174855,
+    "name": "Department of Studies in History, Geography",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.620826,
+      12.313705
+    ]
+  },
+  {
+    "id": 312174856,
+    "name": "Department of Studies in Psychology",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.620715,
+      12.314649
+    ]
+  },
+  {
+    "id": 312174857,
+    "name": "Department of Studies in Food Science and Nutrition",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.620784,
+      12.315191
+    ]
+  },
+  {
+    "id": 312174858,
+    "name": "Department of Studies in Biochemistry",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.620783,
+      12.315999
+    ]
+  },
+  {
+    "id": 312174859,
+    "name": "Department of Studies in Environmental Science",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.621281,
+      12.315961
+    ]
+  },
+  {
+    "id": 312174860,
+    "name": "Institute of Developmental Studies",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.622287,
+      12.317093
+    ]
+  },
+  {
+    "id": 312174861,
+    "name": "Bahadur Institute of Management Sciences",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.621661,
+      12.318139
+    ]
+  },
+  {
+    "id": 312174862,
+    "name": "Prasaranga, University Printing Press",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.623706,
+      12.317675
+    ]
+  },
+  {
+    "id": 312174863,
+    "name": "Dr. B. R. Ambedkar Studies",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.623061,
+      12.317891
+    ]
+  },
+  {
+    "id": 312174864,
+    "name": "Babu Jagajivanram Studies",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.622586,
+      12.317861
+    ]
+  },
+  {
+    "id": 312174968,
+    "name": "University Folklore Museum",
+    "type": "school",
+    "category": "yes",
+    "coords": [
+      76.622413,
+      12.313465
+    ]
+  },
+  {
+    "id": 312175575,
+    "name": "University Guest House",
+    "type": "school",
+    "category": "yes",
+    "coords": [
+      76.625467,
+      12.30732
+    ]
+  },
+  {
+    "id": 312362240,
+    "name": "University Guest House",
+    "type": "school",
+    "category": "yes",
+    "coords": [
+      76.625274,
+      12.307468
+    ]
+  },
+  {
+    "id": 312362241,
+    "name": "Mysore University Engineering Section",
+    "type": "school",
+    "category": "yes",
+    "coords": [
+      76.624519,
+      12.307693
+    ]
+  },
+  {
+    "id": 312362242,
+    "name": "Gandhi Bhavan",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.622886,
+      12.308587
+    ]
+  },
+  {
+    "id": 312362244,
+    "name": "Department of Studies in Social Work",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.622059,
+      12.308277
+    ]
+  },
+  {
+    "id": 312362245,
+    "name": "National Center for History of Science",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.621115,
+      12.308743
+    ]
+  },
+  {
+    "id": 312362248,
+    "name": "University Facility",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.621858,
+      12.310017
+    ]
+  },
+  {
+    "id": 312362249,
+    "name": "University Facility",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.622048,
+      12.310043
+    ]
+  },
+  {
+    "id": 312362250,
+    "name": "University Facility",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.622193,
+      12.310029
+    ]
+  },
+  {
+    "id": 312362251,
+    "name": "University Facility",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.62234,
+      12.309964
+    ]
+  },
+  {
+    "id": 312362252,
+    "name": "Department of Studies in Applied Botany",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.622159,
+      12.31033
+    ]
+  },
+  {
+    "id": 312362253,
+    "name": "Department of Studies in Biotechnology",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.621949,
+      12.310635
+    ]
+  },
+  {
+    "id": 312362297,
+    "name": "Department of Studies in Anthropology",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.619793,
+      12.31107
+    ]
+  },
+  {
+    "id": 312362298,
+    "name": "University Facility",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.619759,
+      12.310856
+    ]
+  },
+  {
+    "id": 312381108,
+    "name": "Bhanavi Hospital",
+    "type": "hospital",
+    "category": "hospital",
+    "coords": [
+      76.627142,
+      12.292775
+    ]
+  },
+  {
+    "id": 312381110,
+    "name": "M.A.S.V.S. Independent PU Science College",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.626738,
+      12.292461
+    ]
+  },
+  {
+    "id": 312381115,
+    "name": "Kamakshi Hospital",
+    "type": "hospital",
+    "category": "hospital",
+    "coords": [
+      76.62359,
+      12.299737
+    ]
+  },
+  {
+    "id": 312381120,
+    "name": "Vijaya Vittala School",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.624368,
+      12.301254
+    ]
+  },
+  {
+    "id": 312381121,
+    "name": "Vijaya Vittala PU College",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.623933,
+      12.301318
+    ]
+  },
+  {
+    "id": 312381122,
+    "name": "Rotary West School",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.624359,
+      12.300943
+    ]
+  },
+  {
+    "id": 312381125,
+    "name": "University College of Fine Arts",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.625966,
+      12.305049
+    ]
+  },
+  {
+    "id": 312381126,
+    "name": "Department of Studies in Sanskrit",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.621721,
+      12.308314
+    ]
+  },
+  {
+    "id": 312381127,
+    "name": "Department of Gandhian Studies",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.62151,
+      12.30836
+    ]
+  },
+  {
+    "id": 313191573,
+    "name": "Government Pre-University College",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.626206,
+      12.293148
+    ]
+  },
+  {
+    "id": 313213205,
+    "name": "Kaveri High School",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.632309,
+      12.291761
+    ]
+  },
+  {
+    "id": 313213206,
+    "name": "Kaveri College",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.632312,
+      12.29143
+    ]
+  },
+  {
+    "id": 313214367,
+    "name": "Kuvempu High School",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.62608,
+      12.292576
+    ]
+  },
+  {
+    "id": 313361637,
+    "name": "Adichunchangiri School",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.632389,
+      12.294272
+    ]
+  },
+  {
+    "id": 313769324,
+    "name": "Sri Taralabalu College",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.617104,
+      12.302163
+    ]
+  },
+  {
+    "id": 313978159,
+    "name": "Vasavi School",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.630036,
+      12.287182
+    ]
+  },
+  {
+    "id": 314207425,
+    "name": "Jnanodaya PU College",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.623303,
+      12.303152
+    ]
+  },
+  {
+    "id": 314218055,
+    "name": "Somani College",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.623259,
+      12.301672
+    ]
+  },
+  {
+    "id": 314667209,
+    "name": "Sri Kuvempu High School",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.627401,
+      12.29955
+    ]
+  },
+  {
+    "id": 315103277,
+    "name": "Ashwini Nursing Home, Lakshmipuram",
+    "type": "hospital",
+    "category": "hospital",
+    "coords": [
+      76.645573,
+      12.294606
+    ]
+  },
+  {
+    "id": 315264720,
+    "name": "Sumukha PU college",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.603333,
+      12.344502
+    ]
+  },
+  {
+    "id": 315268370,
+    "name": "Chandrakala Hospital",
+    "type": "hospital",
+    "category": "hospital",
+    "coords": [
+      76.619525,
+      12.325791
+    ]
+  },
+  {
+    "id": 315268376,
+    "name": "School Facility",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.619531,
+      12.328376
+    ]
+  },
+  {
+    "id": 315268377,
+    "name": "School Facility",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.6194,
+      12.327924
+    ]
+  },
+  {
+    "id": 315289483,
+    "name": "Pramathi Hill View",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.628491,
+      12.285658
+    ]
+  },
+  {
+    "id": 315414954,
+    "name": "Baden Powell School",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.639223,
+      12.311003
+    ]
+  },
+  {
+    "id": 315426094,
+    "name": "Sairanga Vidya Samsthe",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.649216,
+      12.344613
+    ]
+  },
+  {
+    "id": 315426762,
+    "name": "JSS Dental College",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.652175,
+      12.342927
+    ]
+  },
+  {
+    "id": 315426763,
+    "name": "JSS Medical College",
+    "type": "hospital",
+    "category": "college",
+    "coords": [
+      76.652682,
+      12.344428
+    ]
+  },
+  {
+    "id": 315426764,
+    "name": "JSS Pharmacy College",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.654712,
+      12.344363
+    ]
+  },
+  {
+    "id": 315559050,
+    "name": "JSS Public School",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.682762,
+      12.303425
+    ]
+  },
+  {
+    "id": 315587452,
+    "name": "University Facility",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.623273,
+      12.31548
+    ]
+  },
+  {
+    "id": 315927355,
+    "name": "Prajapita Brahmakumari Ishvariya Vishvavidyanilaya",
+    "type": "school",
+    "category": "yes",
+    "coords": [
+      76.638495,
+      12.322516
+    ]
+  },
+  {
+    "id": 315927356,
+    "name": "Vikram Jeev",
+    "type": "hospital",
+    "category": "hospital",
+    "coords": [
+      76.637319,
+      12.322696
+    ]
+  },
+  {
+    "id": 315927357,
+    "name": "Vikram Hospital",
+    "type": "hospital",
+    "category": "hospital",
+    "coords": [
+      76.638254,
+      12.323573
+    ]
+  },
+  {
+    "id": 316014403,
+    "name": "Government Veterinary Hospital",
+    "type": "hospital",
+    "category": "yes",
+    "coords": [
+      76.646644,
+      12.312622
+    ]
+  },
+  {
+    "id": 316047011,
+    "name": "Vinayaka Dental Clinic",
+    "type": "hospital",
+    "category": "yes",
+    "coords": [
+      76.622471,
+      12.296002
+    ]
+  },
+  {
+    "id": 316169622,
+    "name": "Vikram Perfect",
+    "type": "hospital",
+    "category": "hospital",
+    "coords": [
+      76.632351,
+      12.332602
+    ]
+  },
+  {
+    "id": 316323961,
+    "name": "CAVA Government Arts College",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.652245,
+      12.313504
+    ]
+  },
+  {
+    "id": 316355220,
+    "name": "Oriental Research Institute",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.640024,
+      12.306156
+    ]
+  },
+  {
+    "id": 316482469,
+    "name": "Government Lower Primary School, Manche Gowdana Kollapu",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.611319,
+      12.34344
+    ]
+  },
+  {
+    "id": 316747947,
+    "name": "Gopalagowda Shanthaveri Memorial Hospital",
+    "type": "hospital",
+    "category": "yes",
+    "coords": [
+      76.66787,
+      12.308658
+    ]
+  },
+  {
+    "id": 318518394,
+    "name": "BGS Apollo Nursing School",
+    "type": "hospital",
+    "category": "college",
+    "coords": [
+      76.632488,
+      12.294759
+    ]
+  },
+  {
+    "id": 319342003,
+    "name": "Vanitha Sadana",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.638781,
+      12.291765
+    ]
+  },
+  {
+    "id": 319342004,
+    "name": "Siddhartha High School",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.639324,
+      12.291444
+    ]
+  },
+  {
+    "id": 320649146,
+    "name": "Vasan Eye Care Hospital, Mysuru",
+    "type": "hospital",
+    "category": "yes",
+    "coords": [
+      76.643658,
+      12.296227
+    ]
+  },
+  {
+    "id": 320649147,
+    "name": "Annapoorna Multi Speciality Hospital",
+    "type": "hospital",
+    "category": "hospital",
+    "coords": [
+      76.645717,
+      12.295104
+    ]
+  },
+  {
+    "id": 329067093,
+    "name": "School Facility",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.652485,
+      12.286916
+    ]
+  },
+  {
+    "id": 330183508,
+    "name": "Rotary School",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.603765,
+      12.277894
+    ]
+  },
+  {
+    "id": 330184095,
+    "name": "Sukrutha school",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.611769,
+      12.281775
+    ]
+  },
+  {
+    "id": 330184334,
+    "name": "Supreme Public School",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.609324,
+      12.278303
+    ]
+  },
+  {
+    "id": 351482522,
+    "name": "Brindavan Hospital",
+    "type": "hospital",
+    "category": "hospital",
+    "coords": [
+      76.626791,
+      12.322882
+    ]
+  },
+  {
+    "id": 352013981,
+    "name": "Hospital Facility",
+    "type": "hospital",
+    "category": "hospital",
+    "coords": [
+      76.694698,
+      12.291167
+    ]
+  },
+  {
+    "id": 358038434,
+    "name": "Sai Saraswathi School",
+    "type": "school",
+    "category": "yes",
+    "coords": [
+      76.597939,
+      12.301027
+    ]
+  },
+  {
+    "id": 358040701,
+    "name": "Vatsalya Hospital",
+    "type": "hospital",
+    "category": "hospital",
+    "coords": [
+      76.648355,
+      12.295318
+    ]
+  },
+  {
+    "id": 358041317,
+    "name": "Christ The King Convent",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.644172,
+      12.294027
+    ]
+  },
+  {
+    "id": 358623694,
+    "name": "Mysore Medical College Auditorium",
+    "type": "hospital",
+    "category": "yes",
+    "coords": [
+      76.64737,
+      12.314463
+    ]
+  },
+  {
+    "id": 358989522,
+    "name": "Maharani's Science College for Women",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.643607,
+      12.310317
+    ]
+  },
+  {
+    "id": 358989523,
+    "name": "Maharani's Arts and Commerce College for Women",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.642986,
+      12.310403
+    ]
+  },
+  {
+    "id": 360213154,
+    "name": "School Facility",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.61562,
+      12.312716
+    ]
+  },
+  {
+    "id": 360213155,
+    "name": "School Facility",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.615856,
+      12.312677
+    ]
+  },
+  {
+    "id": 360299037,
+    "name": "School Facility",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.661444,
+      12.321144
+    ]
+  },
+  {
+    "id": 360303635,
+    "name": "Heritage City College",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.631135,
+      12.295643
+    ]
+  },
+  {
+    "id": 369329665,
+    "name": "Sri Sathya Sai Baba Higher Primary School",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.62519,
+      12.320838
+    ]
+  },
+  {
+    "id": 369330724,
+    "name": "University Facility",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.62483,
+      12.314672
+    ]
+  },
+  {
+    "id": 369330726,
+    "name": "University Facility",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.623827,
+      12.315349
+    ]
+  },
+  {
+    "id": 369330729,
+    "name": "University Facility",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.622762,
+      12.315602
+    ]
+  },
+  {
+    "id": 369330732,
+    "name": "University Facility",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.622752,
+      12.316203
+    ]
+  },
+  {
+    "id": 369331157,
+    "name": "Mahabodhi School",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.629901,
+      12.304871
+    ]
+  },
+  {
+    "id": 388483683,
+    "name": "University Guest House",
+    "type": "school",
+    "category": "yes",
+    "coords": [
+      76.62558,
+      12.307653
+    ]
+  },
+  {
+    "id": 388483685,
+    "name": "Directorate of Outreach Studies",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.626314,
+      12.307449
+    ]
+  },
+  {
+    "id": 388485776,
+    "name": "Department of Studies in Mathematics",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.623282,
+      12.30953
+    ]
+  },
+  {
+    "id": 388965189,
+    "name": "Dr, S. Radhakrishnan Centre",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.636279,
+      12.306382
+    ]
+  },
+  {
+    "id": 389126117,
+    "name": "Hospital Facility",
+    "type": "hospital",
+    "category": "hospital",
+    "coords": [
+      76.620494,
+      12.320682
+    ]
+  },
+  {
+    "id": 389126118,
+    "name": "Hospital Facility",
+    "type": "hospital",
+    "category": "hospital",
+    "coords": [
+      76.62014,
+      12.320778
+    ]
+  },
+  {
+    "id": 389203004,
+    "name": "International School of Information Management",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.621554,
+      12.314338
+    ]
+  },
+  {
+    "id": 389203009,
+    "name": "University Facility",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.621311,
+      12.315114
+    ]
+  },
+  {
+    "id": 389203013,
+    "name": "University Facility",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.623001,
+      12.317254
+    ]
+  },
+  {
+    "id": 399196022,
+    "name": "Podar International School",
+    "type": "school",
+    "category": "yes",
+    "coords": [
+      76.607291,
+      12.332826
+    ]
+  },
+  {
+    "id": 417160331,
+    "name": "Matru Mandali School",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.629449,
+      12.322093
+    ]
+  },
+  {
+    "id": 420174128,
+    "name": "Jain School",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.65204,
+      12.300642
+    ]
+  },
+  {
+    "id": 431442652,
+    "name": "K Pattabhi Jois Ashtanga Yoga Institute",
+    "type": "school",
+    "category": "yes",
+    "coords": [
+      76.628777,
+      12.332371
+    ]
+  },
+  {
+    "id": 452374150,
+    "name": "School Facility",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.662303,
+      12.321062
+    ]
+  },
+  {
+    "id": 463881787,
+    "name": "School Facility",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.608201,
+      12.285415
+    ]
+  },
+  {
+    "id": 475505915,
+    "name": "Arvinda Nursing Home",
+    "type": "hospital",
+    "category": "yes",
+    "coords": [
+      76.629341,
+      12.277938
+    ]
+  },
+  {
+    "id": 475589843,
+    "name": "Arivu Vidya Samsthe",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.60574,
+      12.270652
+    ]
+  },
+  {
+    "id": 476951325,
+    "name": "Aishwarya Hospital",
+    "type": "hospital",
+    "category": "hospital",
+    "coords": [
+      76.609291,
+      12.323161
+    ]
+  },
+  {
+    "id": 479680541,
+    "name": "Bhagini Seva Samaja",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.643106,
+      12.293143
+    ]
+  },
+  {
+    "id": 487767351,
+    "name": "School Facility",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.625954,
+      12.319828
+    ]
+  },
+  {
+    "id": 487767352,
+    "name": "School Facility",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.624275,
+      12.318881
+    ]
+  },
+  {
+    "id": 487767353,
+    "name": "School Facility",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.62433,
+      12.318625
+    ]
+  },
+  {
+    "id": 487767354,
+    "name": "School Facility",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.62342,
+      12.319318
+    ]
+  },
+  {
+    "id": 488366400,
+    "name": "School Facility",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.636907,
+      12.327131
+    ]
+  },
+  {
+    "id": 488366401,
+    "name": "School Facility",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.636787,
+      12.327681
+    ]
+  },
+  {
+    "id": 498030512,
+    "name": "ATME College of Engineering",
+    "type": "school",
+    "category": "yes",
+    "coords": [
+      76.711212,
+      12.303955
+    ]
+  },
+  {
+    "id": 525512663,
+    "name": "Gopal Nursing Home",
+    "type": "hospital",
+    "category": "yes",
+    "coords": [
+      76.644667,
+      12.325052
+    ]
+  },
+  {
+    "id": 525517454,
+    "name": "ESI Hospital",
+    "type": "hospital",
+    "category": "yes",
+    "coords": [
+      76.632071,
+      12.33836
+    ]
+  },
+  {
+    "id": 525518049,
+    "name": "Ayurvedic Hospital",
+    "type": "hospital",
+    "category": "yes",
+    "coords": [
+      76.632053,
+      12.342297
+    ]
+  },
+  {
+    "id": 549650507,
+    "name": "School Facility",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.595602,
+      12.299066
+    ]
+  },
+  {
+    "id": 549650508,
+    "name": "School Facility",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.595679,
+      12.298692
+    ]
+  },
+  {
+    "id": 549650509,
+    "name": "School Facility",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.595962,
+      12.298843
+    ]
+  },
+  {
+    "id": 549854451,
+    "name": "College Facility",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.640205,
+      12.304096
+    ]
+  },
+  {
+    "id": 549855233,
+    "name": "Maharaja's High School",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.643462,
+      12.3089
+    ]
+  },
+  {
+    "id": 549855234,
+    "name": "Maharaja PU College",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.64288,
+      12.309056
+    ]
+  },
+  {
+    "id": 554875767,
+    "name": "School Facility",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.604387,
+      12.302888
+    ]
+  },
+  {
+    "id": 554875769,
+    "name": "School Facility",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.604069,
+      12.302439
+    ]
+  },
+  {
+    "id": 554875771,
+    "name": "College Facility",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.60454,
+      12.302078
+    ]
+  },
+  {
+    "id": 572409989,
+    "name": "School of Planning and Architecture",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.617324,
+      12.319699
+    ]
+  },
+  {
+    "id": 609934960,
+    "name": "School Facility",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.62588,
+      12.321265
+    ]
+  },
+  {
+    "id": 623813370,
+    "name": "Hospital Facility",
+    "type": "hospital",
+    "category": "hospital",
+    "coords": [
+      76.664628,
+      12.335387
+    ]
+  },
+  {
+    "id": 741179471,
+    "name": "Manipal Hospital",
+    "type": "hospital",
+    "category": "yes",
+    "coords": [
+      76.660109,
+      12.34999
+    ]
+  },
+  {
+    "id": 741244935,
+    "name": "Sri Jayadeva Institute of Cardiovascular Sciences and Research",
+    "type": "hospital",
+    "category": "hospital",
+    "coords": [
+      76.629509,
+      12.342891
+    ]
+  },
+  {
+    "id": 741622254,
+    "name": "P. K. Sanitorium",
+    "type": "hospital",
+    "category": "hospital",
+    "coords": [
+      76.629992,
+      12.34143
+    ]
+  },
+  {
+    "id": 750100671,
+    "name": "Maharshi Public School",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.645098,
+      12.272352
+    ]
+  },
+  {
+    "id": 750100672,
+    "name": "Maharshi PU College",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.645152,
+      12.272609
+    ]
+  },
+  {
+    "id": 753432518,
+    "name": "Postal Training College",
+    "type": "school",
+    "category": "yes",
+    "coords": [
+      76.671043,
+      12.306944
+    ]
+  },
+  {
+    "id": 754578693,
+    "name": "University Facility",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.620956,
+      12.317691
+    ]
+  },
+  {
+    "id": 754578694,
+    "name": "Department of Studies in Organic Chemistry",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.621177,
+      12.317088
+    ]
+  },
+  {
+    "id": 754578695,
+    "name": "University Facility",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.620676,
+      12.316617
+    ]
+  },
+  {
+    "id": 754578696,
+    "name": "University Facility",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.62125,
+      12.316735
+    ]
+  },
+  {
+    "id": 754578697,
+    "name": "University Facility",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.617749,
+      12.317951
+    ]
+  },
+  {
+    "id": 755434462,
+    "name": "Kamakshi Hospital",
+    "type": "hospital",
+    "category": "hospital",
+    "coords": [
+      76.635495,
+      12.264936
+    ]
+  },
+  {
+    "id": 760740090,
+    "name": "Suyog Hospital",
+    "type": "hospital",
+    "category": "hospital",
+    "coords": [
+      76.620037,
+      12.282302
+    ]
+  },
+  {
+    "id": 760887416,
+    "name": "Ramakrishna Vidya Kendra",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.619795,
+      12.282895
+    ]
+  },
+  {
+    "id": 828140332,
+    "name": "Government Urdu Higher Primary School",
+    "type": "school",
+    "category": "yes",
+    "coords": [
+      76.645139,
+      12.283275
+    ]
+  },
+  {
+    "id": 1004088867,
+    "name": "Christ School",
+    "type": "school",
+    "category": "yes",
+    "coords": [
+      76.593741,
+      12.290984
+    ]
+  },
+  {
+    "id": 1006622018,
+    "name": "NIE First Grade College",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.641222,
+      12.276409
+    ]
+  },
+  {
+    "id": 1006622019,
+    "name": "NIE Industrial Training Institute",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.640753,
+      12.276814
+    ]
+  },
+  {
+    "id": 1007504328,
+    "name": "GCS Sports Medicine and Multi-Specialty Hospital",
+    "type": "hospital",
+    "category": "hospital",
+    "coords": [
+      76.643161,
+      12.278203
+    ]
+  },
+  {
+    "id": 1007505514,
+    "name": "School Facility",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.627571,
+      12.292529
+    ]
+  },
+  {
+    "id": 1007505515,
+    "name": "School Facility",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.627386,
+      12.292001
+    ]
+  },
+  {
+    "id": 1007505516,
+    "name": "School Facility",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.627748,
+      12.292577
+    ]
+  },
+  {
+    "id": 1010635412,
+    "name": "Kuvempu Institute of Kannada Studies",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.622348,
+      12.311743
+    ]
+  },
+  {
+    "id": 1010635414,
+    "name": "Department of Library and Information Science",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.623521,
+      12.311348
+    ]
+  },
+  {
+    "id": 1056793529,
+    "name": "Kangaroo Care - Women and Children Hospital",
+    "type": "hospital",
+    "category": "hospital",
+    "coords": [
+      76.616744,
+      12.325894
+    ]
+  },
+  {
+    "id": 1092879831,
+    "name": "School Facility",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.643022,
+      12.292308
+    ]
+  },
+  {
+    "id": 1092879832,
+    "name": "School Facility",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.643319,
+      12.292206
+    ]
+  },
+  {
+    "id": 1092879833,
+    "name": "School Facility",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.64366,
+      12.292031
+    ]
+  },
+  {
+    "id": 1092879834,
+    "name": "School Facility",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.642851,
+      12.291723
+    ]
+  },
+  {
+    "id": 1131468012,
+    "name": "Faculty of Life Sciences",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.651728,
+      12.344362
+    ]
+  },
+  {
+    "id": 1159325875,
+    "name": "Mysore School of Architecture",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.605866,
+      12.267382
+    ]
+  },
+  {
+    "id": 1247985540,
+    "name": "University Facility",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.619205,
+      12.317597
+    ]
+  },
+  {
+    "id": 1247986184,
+    "name": "University Facility",
+    "type": "school",
+    "category": "university",
+    "coords": [
+      76.620631,
+      12.31704
+    ]
+  },
+  {
+    "id": 1260413769,
+    "name": "College Facility",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.678049,
+      12.301401
+    ]
+  },
+  {
+    "id": 1260413770,
+    "name": "College Facility",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.678082,
+      12.301746
+    ]
+  },
+  {
+    "id": 1260413771,
+    "name": "College Facility",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.67806,
+      12.301854
+    ]
+  },
+  {
+    "id": 1309848358,
+    "name": "MIT First Grade College",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.639447,
+      12.273136
+    ]
+  },
+  {
+    "id": 1309978542,
+    "name": "Dayananda Arya Vidya Public School",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.646474,
+      12.270604
+    ]
+  },
+  {
+    "id": 1309978544,
+    "name": "Hindustan College",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.647724,
+      12.270246
+    ]
+  },
+  {
+    "id": 1363399855,
+    "name": "K Puttaswamy first grade college",
+    "type": "school",
+    "category": "yes",
+    "coords": [
+      76.620292,
+      12.335764
+    ]
+  },
+  {
+    "id": 1363399857,
+    "name": "P U College",
+    "type": "school",
+    "category": "yes",
+    "coords": [
+      76.620437,
+      12.336461
+    ]
+  },
+  {
+    "id": 1363399858,
+    "name": "K P School",
+    "type": "school",
+    "category": "yes",
+    "coords": [
+      76.62083,
+      12.336615
+    ]
+  },
+  {
+    "id": 1377721423,
+    "name": "College Facility",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.638574,
+      12.301664
+    ]
+  },
+  {
+    "id": 1377721427,
+    "name": "College Facility",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.638854,
+      12.301387
+    ]
+  },
+  {
+    "id": 1377721429,
+    "name": "College Facility",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.638795,
+      12.301776
+    ]
+  },
+  {
+    "id": 1377721430,
+    "name": "College Facility",
+    "type": "school",
+    "category": "college",
+    "coords": [
+      76.63868,
+      12.301388
+    ]
+  },
+  {
+    "id": 1389434442,
+    "name": "Navya Fetal Medicine Centre",
+    "type": "hospital",
+    "category": "hospital",
+    "coords": [
+      76.646263,
+      12.29499
+    ]
+  },
+  {
+    "id": 1419149986,
+    "name": "Government Higher Primary School",
+    "type": "school",
+    "category": "school",
+    "coords": [
+      76.599899,
+      12.26575
+    ]
+  }
+]

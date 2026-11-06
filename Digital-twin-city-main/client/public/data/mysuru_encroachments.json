@@ -1,0 +1,143 @@
+{
+  "type": "FeatureCollection",
+  "name": "mysuru_heritage_encroachment_zones",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "enc-1",
+        "name": "Kukkarahalli Lake Wetland Buffer Encroachment",
+        "category": "Waterbody & Lake Catchment",
+        "historicalPeriod": "1864 CE (Mummadi Krishnaraja Wadiyar era)",
+        "originalExtent": "120 Hectares (1864 Survey of Mysore)",
+        "currentExtent": "84 Hectares (30% Loss)",
+        "encroachmentType": "Illegal Commercial Warehouses & Asphalted Parking",
+        "riskLevel": "CRITICAL",
+        "color": "#ef4444",
+        "yearDetected": "1998 - 2024",
+        "legalStatus": "Karnataka High Court PIL 2002 Buffer Notification Pending Demolition",
+        "impact": "Catchment area severance, sewage inflow, and loss of 180+ migratory bird roosting zones."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [76.6260, 12.3080],
+          [76.6335, 12.3115],
+          [76.6355, 12.3060],
+          [76.6295, 12.3015],
+          [76.6240, 12.3035],
+          [76.6260, 12.3080]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "enc-2",
+        "name": "Chamundi Hill Reserve Foothill Buffer Encroachment",
+        "category": "Eco-Sensitive Heritage Zone",
+        "historicalPeriod": "17th Century Wadiyar Sacred Hill Precinct",
+        "originalExtent": "1,450 Hectares Contiguous Forest Canopy",
+        "currentExtent": "1,080 Hectares (25.5% Fragmentation)",
+        "encroachmentType": "Unsanctioned Commercial Hospitality, Resorts & Construction Debris Dumping",
+        "riskLevel": "HIGH",
+        "color": "#f97316",
+        "yearDetected": "2005 - 2023",
+        "legalStatus": "Declared Eco-Sensitive Buffer Zone (ESZ); 14 notices issued by Forest Dept",
+        "impact": "Landslides along road curves, depletion of groundwater recharge, wildlife corridor disruption."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [76.6660, 12.2880],
+          [76.6780, 12.2950],
+          [76.6850, 12.2850],
+          [76.6770, 12.2740],
+          [76.6620, 12.2770],
+          [76.6660, 12.2880]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "enc-3",
+        "name": "Devaraja Market Heritage Precinct Buffer",
+        "category": "Heritage Architectural Monument",
+        "historicalPeriod": "1886 CE (Chamaraja Wadiyar IX)",
+        "originalExtent": "3.5 Hectares Open Quadrangle & Carriage Arcades",
+        "currentExtent": "2.1 Hectares (Enclosed by Unregistered Concrete Annexes)",
+        "encroachmentType": "Unauthorized Multi-level Tin Sheds & Concrete Cantilevers",
+        "riskLevel": "HIGH",
+        "color": "#eab308",
+        "yearDetected": "1985 - 2020",
+        "legalStatus": "Heritage Conservation Committee Grade-I Monument Protection Order",
+        "impact": "Severe fire vehicle inaccessibility, structural stress on 135-year-old lime mortar rafters."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [76.6508, 12.3105],
+          [76.6545, 12.3122],
+          [76.6558, 12.3098],
+          [76.6520, 12.3082],
+          [76.6508, 12.3105]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "enc-4",
+        "name": "Lalitha Mahal Palace Heritage Corridor Encroachment",
+        "category": "Royal Vista & Ridge Corridor",
+        "historicalPeriod": "1921 CE (Nalwadi Krishnaraja Wadiyar)",
+        "originalExtent": "45 Hectares Italianate Ridge Gardens",
+        "currentExtent": "31 Hectares",
+        "encroachmentType": "Peripheral Residential Layout Violations & Tree Felling",
+        "riskLevel": "MEDIUM",
+        "color": "#a855f7",
+        "yearDetected": "2010 - 2024",
+        "legalStatus": "MUDA Master Plan 2031 Protected Ridge Line",
+        "impact": "Obstruction of historic visual corridor between Lalitha Mahal and Chamundi Hill."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [76.6800, 12.3000],
+          [76.6890, 12.3030],
+          [76.6920, 12.2960],
+          [76.6830, 12.2930],
+          [76.6800, 12.3000]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "enc-5",
+        "name": "Karanji Lake Nature Park Catchment Encroachment",
+        "category": "Waterbody & Bird Sanctuary",
+        "historicalPeriod": "1910s (Royal Avian Lake & Walkway)",
+        "originalExtent": "90 Hectares Water Spread & Marshy Buffer",
+        "currentExtent": "68 Hectares (24.4% Infill)",
+        "encroachmentType": "Private Institutional Compounds & Road Widening Silt Dumping",
+        "riskLevel": "CRITICAL",
+        "color": "#ef4444",
+        "yearDetected": "1995 - 2022",
+        "legalStatus": "Zoo Authority of Karnataka (ZAK) Monitored Lake; Eviction Drive Slated",
+        "impact": "Marshland shrinkage, eutrophication spikes, reduction in pelican wintering habitat."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [76.6690, 12.3060],
+          [76.6775, 12.3085],
+          [76.6795, 12.3010],
+          [76.6710, 12.2985],
+          [76.6690, 12.3060]
+        ]]
+      }
+    }
+  ]
+}
