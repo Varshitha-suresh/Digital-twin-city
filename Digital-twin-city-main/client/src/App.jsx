@@ -4,9 +4,9 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import { 
   Search, Loader2, Building2, Trash2, AlertTriangle, X, MapPin, 
   Layers, Navigation, Wind, Leaf, History, Eye, Map as MapIcon, 
-  MessageSquare, Camera, Droplets, Zap, Flame, RefreshCw, Info, Activity,
+  MessageSquare, Camera, Droplets, Zap, RefreshCw, Info, Activity,
   CheckCircle2, Clock, Upload, Filter, Tag, AlertCircle, Landmark, ShieldAlert, Sparkles, ChevronRight,
-  School, Stethoscope, Car, Wrench, ShieldCheck, Ruler, Calendar, Truck
+  School, Stethoscope, Car, Wrench, ShieldCheck, Ruler, Calendar, Truck, Shield
 } from 'lucide-react';
 import axios from 'axios';
 import {
@@ -27,13 +27,130 @@ import {
   calculateFastestEmsRoute
 } from './emsRoutingEngine.js';
 
-// --- STATIC DATA ---
-const HYDRANTS = {
+// --- STATIC DATA: MYSURU POLICE STATIONS & LAW ENFORCEMENT POSTS ---
+const POLICE_STATIONS = {
   type: 'FeatureCollection',
   features: [
-    { type: 'Feature', geometry: { type: 'Point', coordinates: [76.6551, 12.3051] }, properties: { name: 'Palace Hydrant' } },
-    { type: 'Feature', geometry: { type: 'Point', coordinates: [76.6570, 12.3075] }, properties: { name: 'Muni Office Hydrant' } },
-    { type: 'Feature', geometry: { type: 'Point', coordinates: [76.6510, 12.3040] }, properties: { name: 'West Gate' } }
+    {
+      type: 'Feature',
+      geometry: { type: 'Point', coordinates: [76.66409, 12.30732] },
+      properties: {
+        id: 'pol-1',
+        name: "Police Commissioner's Office, Mysuru",
+        zone: 'Central Headquarters',
+        phone: '0821-2418300 / 112',
+        type: 'City Police Headquarters',
+        jurisdiction: 'Mysuru City Police Commissionerate'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: { type: 'Point', coordinates: [76.65048, 12.29790] },
+      properties: {
+        id: 'pol-2',
+        name: 'K.R. Police Station (Krishnaraja)',
+        zone: 'K.R. Sub-Division',
+        phone: '0821-2418303',
+        type: 'Law & Order Police Station',
+        jurisdiction: 'Agrahara, Chamundipuram, Fort Area'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: { type: 'Point', coordinates: [76.64262, 12.29775] },
+      properties: {
+        id: 'pol-3',
+        name: 'Lakshmipuram Police Station',
+        zone: 'K.R. Sub-Division',
+        phone: '0821-2418304',
+        type: 'Law & Order Police Station',
+        jurisdiction: 'Lakshmipuram, Chamarajapuram, Krishnamurthypuram'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: { type: 'Point', coordinates: [76.62381, 12.30169] },
+      properties: {
+        id: 'pol-4',
+        name: 'Saraswathipuram Police Station',
+        zone: 'K.R. Sub-Division',
+        phone: '0821-2418305',
+        type: 'Law & Order Police Station',
+        jurisdiction: 'Saraswathipuram, Manasagangotri, K.G. Koppal'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: { type: 'Point', coordinates: [76.63245, 12.32607] },
+      properties: {
+        id: 'pol-5',
+        name: 'Vontikoppal Police Station (VV Puram)',
+        zone: 'N.R. Sub-Division',
+        phone: '0821-2418306',
+        type: 'Law & Order Police Station',
+        jurisdiction: 'Vontikoppal, Gokulam, Yadavagiri'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: { type: 'Point', coordinates: [76.61906, 12.28639] },
+      properties: {
+        id: 'pol-6',
+        name: 'Kuvempunagar Police Station',
+        zone: 'K.R. Sub-Division',
+        phone: '0821-2418307',
+        type: 'Law & Order Police Station',
+        jurisdiction: 'Kuvempunagar, Ramakrishnanagar, Dattagalli'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: { type: 'Point', coordinates: [76.63132, 12.28932] },
+      properties: {
+        id: 'pol-7',
+        name: 'Ashokpuram Police Station',
+        zone: 'K.R. Sub-Division',
+        phone: '0821-2418308',
+        type: 'Law & Order Police Station',
+        jurisdiction: 'Ashokpuram, Vidyaranyapuram, Jayanagar'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: { type: 'Point', coordinates: [76.64723, 12.30825] },
+      properties: {
+        id: 'pol-8',
+        name: 'Nallappa Thana Police Station',
+        zone: 'Devaraja Sub-Division',
+        phone: '0821-2418309',
+        type: 'Law & Order Police Station',
+        jurisdiction: 'Devaraja Mohalla, Central Market Sector'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: { type: 'Point', coordinates: [76.67420, 12.29717] },
+      properties: {
+        id: 'pol-9',
+        name: 'Karnataka Police Bhavana',
+        zone: 'City Armed Reserve Base',
+        phone: '0821-2418320',
+        type: 'Armed Reserve Police & Welfare Command',
+        jurisdiction: 'City-wide Armed Support & Rapid Action'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: { type: 'Point', coordinates: [76.66391, 12.31708] },
+      properties: {
+        id: 'pol-10',
+        name: 'Karnataka Police Academy (KPA)',
+        zone: 'State Police Training Campus',
+        phone: '0821-2520333',
+        type: 'Premier Officer Training Institute',
+        jurisdiction: 'State Training Facility & Regional Reserve'
+      }
+    }
   ]
 };
 
@@ -320,7 +437,8 @@ const App = () => {
   const [emsRouteResult, setEmsRouteResult] = useState(null);
   const [emsRoutingLoading, setEmsRoutingLoading] = useState(false);
   const [showTurnByTurn, setShowTurnByTurn] = useState(false);
-  const [showHydrants, setShowHydrants] = useState(false);
+  const [showPoliceStations, setShowPoliceStations] = useState(false);
+  const [selectedPoliceStation, setSelectedPoliceStation] = useState(null);
   const [showEncroachments, setShowEncroachments] = useState(true);
   const [selectedEncroachment, setSelectedEncroachment] = useState(null);
   const [mapLoaded, setMapLoaded] = useState(false);
@@ -553,7 +671,7 @@ const App = () => {
           'utilities': { type: 'geojson', data: '/data/mysuru_utilities.json' },
           'aqi-source': { type: 'geojson', data: aqiDataSets.pointsGeoJson },
           'aqi-cells-source': { type: 'geojson', data: aqiDataSets.cellsGeoJson },
-          'hydrants': { type: 'geojson', data: HYDRANTS },
+          'police-stations-source': { type: 'geojson', data: POLICE_STATIONS },
           'selected-parcel-source': { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
           'terrain-grid-source': { type: 'geojson', data: '/data/mysuru_terrain_grid.json' },
           'blast-circle': { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
@@ -750,11 +868,28 @@ const App = () => {
             }
           },
           {
-            id: 'hydrant-layer',
+            id: 'police-stations-glow',
             type: 'circle',
-            source: 'hydrants',
+            source: 'police-stations-source',
             layout: { 'visibility': 'none' },
-            paint: { 'circle-radius': 6, 'circle-color': '#ff9800', 'circle-stroke-width': 2, 'circle-stroke-color': '#fff' }
+            paint: {
+              'circle-radius': 18,
+              'circle-color': '#1d4ed8',
+              'circle-opacity': 0.35,
+              'circle-blur': 0.6
+            }
+          },
+          {
+            id: 'police-stations-point',
+            type: 'circle',
+            source: 'police-stations-source',
+            layout: { 'visibility': 'none' },
+            paint: {
+              'circle-radius': 8,
+              'circle-color': '#2563eb',
+              'circle-stroke-width': 2.5,
+              'circle-stroke-color': '#ffffff'
+            }
           },
           {
             id: 'emergency-route-casing',
@@ -1063,6 +1198,44 @@ const App = () => {
           .addTo(map.current);
       });
 
+      // Police Station interactive click and hover
+      map.current.on('click', 'police-stations-point', (e) => {
+        if (showReportingHintRef.current) return;
+        if (!e.features || e.features.length === 0) return;
+        const p = e.features[0].properties;
+        const coords = e.features[0].geometry.coordinates.slice();
+        setSelectedPoliceStation(p);
+
+        new maplibregl.Popup({ offset: 12, closeButton: true })
+          .setLngLat(coords)
+          .setHTML(`
+            <div style="font-family: inherit; padding: 4px 2px;">
+              <div style="display:flex; align-items:center; gap:6px; margin-bottom:6px;">
+                <span style="font-size:15px;">🛡️</span>
+                <strong style="font-size:13px; color:#1e3a8a;">${p.name}</strong>
+              </div>
+              <div style="font-size:11px; color:#475569; margin-bottom:6px; font-weight:600;">
+                Zone: <span style="color:#2563eb;">${p.zone}</span>
+              </div>
+              <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:6px; padding:6px 8px; margin-bottom:6px; font-size:11px;">
+                <div style="color:#1e40af;"><b>Type:</b> ${p.type}</div>
+                <div style="color:#0f172a; margin-top:2px;"><b>Jurisdiction:</b> ${p.jurisdiction}</div>
+              </div>
+              <div style="font-size:11px; color:#1e293b; background:#f1f5f9; padding:4px 6px; border-radius:4px; font-weight:700;">
+                📞 Emergency Dispatch: <a href="tel:${p.phone}" style="color:#2563eb; text-decoration:none;">${p.phone}</a>
+              </div>
+            </div>
+          `)
+          .addTo(map.current);
+      });
+
+      map.current.on('mouseenter', 'police-stations-point', () => {
+        map.current.getCanvas().style.cursor = 'pointer';
+      });
+      map.current.on('mouseleave', 'police-stations-point', () => {
+        map.current.getCanvas().style.cursor = '';
+      });
+
       map.current.on('mouseenter', 'flood-water-fill', () => {
         map.current.getCanvas().style.cursor = 'pointer';
       });
@@ -1222,10 +1395,16 @@ const App = () => {
     }
   }, [aqiEnabled, aqiMode, greenEnabled, demolishedId, selectedBuilding, currentStyle]);
 
-  // 5. Hydrants & Emergency Fast Navigation Strategy
+  // 5. Police Stations & Emergency Fast Navigation Strategy
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
-    map.current.setLayoutProperty('hydrant-layer', 'visibility', showHydrants ? 'visible' : 'none');
+    const policeVis = showPoliceStations ? 'visible' : 'none';
+    if (map.current.getLayer('police-stations-glow')) {
+      map.current.setLayoutProperty('police-stations-glow', 'visibility', policeVis);
+    }
+    if (map.current.getLayer('police-stations-point')) {
+      map.current.setLayoutProperty('police-stations-point', 'visibility', policeVis);
+    }
     
     const isEmsVis = isEmergencyActive ? 'visible' : 'none';
     if (map.current.getLayer('emergency-route')) {
@@ -1237,7 +1416,7 @@ const App = () => {
     if (map.current.getLayer('emergency-route-pulse')) {
       map.current.setLayoutProperty('emergency-route-pulse', 'visibility', isEmsVis);
     }
-  }, [showHydrants, isEmergencyActive, mapLoaded]);
+  }, [showPoliceStations, isEmergencyActive, mapLoaded]);
 
   // Dynamic Google Maps-style shortest & fastest route calculation
   useEffect(() => {
@@ -1894,8 +2073,8 @@ const App = () => {
               )}
               
               <div className="grid-btns">
-                <button className={`action-btn ${showHydrants ? 'active' : ''}`} onClick={() => setShowHydrants(!showHydrants)}>
-                  <Flame size={20}/> Fire Hydrants
+                <button className={`action-btn ${showPoliceStations ? 'active' : ''}`} onClick={() => setShowPoliceStations(!showPoliceStations)}>
+                  <Shield size={20}/> Police Stations
                 </button>
                 <button className={`action-btn ${isEmergencyActive ? 'active' : ''}`} onClick={() => setIsEmergencyActive(!isEmergencyActive)}>
                   <Navigation size={20}/> EMS Fastest Route
