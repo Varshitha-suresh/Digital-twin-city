@@ -20,6 +20,12 @@ import {
   extractOuterRing,
   generatePointParcel
 } from './zoningAnalysisEngine.js';
+import {
+  EMS_HUBS,
+  EMS_DESTINATIONS,
+  findNearestEmsHub,
+  calculateFastestEmsRoute
+} from './emsRoutingEngine.js';
 
 // --- STATIC DATA ---
 const HYDRANTS = {
@@ -308,6 +314,12 @@ const App = () => {
   const [aqiEnabled, setAqiEnabled] = useState(false);
   const [greenEnabled, setGreenEnabled] = useState(false);
   const [isEmergencyActive, setIsEmergencyActive] = useState(false);
+  const [emsOriginHub, setEmsOriginHub] = useState(EMS_HUBS[0].id);
+  const [emsDestinationId, setEmsDestinationId] = useState(EMS_DESTINATIONS[0].id);
+  const [emsCustomTarget, setEmsCustomTarget] = useState(null); // [lon, lat]
+  const [emsRouteResult, setEmsRouteResult] = useState(null);
+  const [emsRoutingLoading, setEmsRoutingLoading] = useState(false);
+  const [showTurnByTurn, setShowTurnByTurn] = useState(false);
   const [showHydrants, setShowHydrants] = useState(false);
   const [showEncroachments, setShowEncroachments] = useState(true);
   const [selectedEncroachment, setSelectedEncroachment] = useState(null);
@@ -506,9 +518,13 @@ const App = () => {
   };
 
   // Sync isDemolishMode with ref for click handlers
+  const isEmergencyActiveRef = useRef(false);
   useEffect(() => {
     isDemolishModeRef.current = isDemolishMode;
   }, [isDemolishMode]);
+  useEffect(() => {
+    isEmergencyActiveRef.current = isEmergencyActive;
+  }, [isEmergencyActive]);
 
   // Initial fetch of real-time Mysore air quality and preload all buildings
   useEffect(() => {
@@ -741,11 +757,25 @@ const App = () => {
             paint: { 'circle-radius': 6, 'circle-color': '#ff9800', 'circle-stroke-width': 2, 'circle-stroke-color': '#fff' }
           },
           {
+            id: 'emergency-route-casing',
+            type: 'line',
+            source: 'emergency-path',
+            layout: { 'visibility': 'none' },
+            paint: { 'line-color': '#064e3b', 'line-width': 10, 'line-opacity': 0.85 }
+          },
+          {
             id: 'emergency-route',
             type: 'line',
             source: 'emergency-path',
             layout: { 'visibility': 'none' },
-            paint: { 'line-color': '#00d084', 'line-width': 6, 'line-dasharray': [2, 1] }
+            paint: { 'line-color': '#10b981', 'line-width': 6 }
+          },
+          {
+            id: 'emergency-route-pulse',
+            type: 'line',
+            source: 'emergency-path',
+            layout: { 'visibility': 'none' },
+            paint: { 'line-color': '#ffffff', 'line-width': 2.5, 'line-dasharray': [2, 2] }
           },
           {
             id: 'selected-parcel-extrusion',
@@ -841,6 +871,18 @@ const App = () => {
           setShowReportingHint(false);
           showReportingHintRef.current = false;
           setIsFlaggingModalOpen(true);
+          return;
+        }
+
+        // If EMS Strategy mode is active, clicking any spot sets it as the dynamic emergency destination
+        if (isEmergencyActiveRef.current) {
+          const clickPt = [Number(e.lngLat.lng.toFixed(6)), Number(e.lngLat.lat.toFixed(6))];
+          setEmsCustomTarget(clickPt);
+          // Auto-select the nearest dispatch hub for the fastest response
+          const nearest = findNearestEmsHub(clickPt);
+          if (nearest && nearest.hub) {
+            setEmsOriginHub(nearest.hub.id);
+          }
           return;
         }
 
@@ -1180,12 +1222,94 @@ const App = () => {
     }
   }, [aqiEnabled, aqiMode, greenEnabled, demolishedId, selectedBuilding, currentStyle]);
 
-  // 5. Hydrants & Emergency Routes
+  // 5. Hydrants & Emergency Fast Navigation Strategy
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
     map.current.setLayoutProperty('hydrant-layer', 'visibility', showHydrants ? 'visible' : 'none');
-    map.current.setLayoutProperty('emergency-route', 'visibility', isEmergencyActive ? 'visible' : 'none');
-  }, [showHydrants, isEmergencyActive]);
+    
+    const isEmsVis = isEmergencyActive ? 'visible' : 'none';
+    if (map.current.getLayer('emergency-route')) {
+      map.current.setLayoutProperty('emergency-route', 'visibility', isEmsVis);
+    }
+    if (map.current.getLayer('emergency-route-casing')) {
+      map.current.setLayoutProperty('emergency-route-casing', 'visibility', isEmsVis);
+    }
+    if (map.current.getLayer('emergency-route-pulse')) {
+      map.current.setLayoutProperty('emergency-route-pulse', 'visibility', isEmsVis);
+    }
+  }, [showHydrants, isEmergencyActive, mapLoaded]);
+
+  // Dynamic Google Maps-style shortest & fastest route calculation
+  useEffect(() => {
+    if (!map.current || !mapLoaded || !isEmergencyActive) return;
+
+    let isSubscribed = true;
+    setEmsRoutingLoading(true);
+
+    const hub = EMS_HUBS.find(h => h.id === emsOriginHub) || EMS_HUBS[0];
+    let targetCoords = null;
+    let targetName = '';
+
+    if (emsCustomTarget) {
+      targetCoords = emsCustomTarget;
+      targetName = 'User Map Pin Destination';
+    } else {
+      const dest = EMS_DESTINATIONS.find(d => d.id === emsDestinationId) || EMS_DESTINATIONS[0];
+      targetCoords = dest.coordinates;
+      targetName = dest.name;
+    }
+
+    calculateFastestEmsRoute(hub.coordinates, targetCoords)
+      .then(route => {
+        if (!isSubscribed) return;
+        setEmsRouteResult({
+          ...route,
+          originName: hub.name,
+          destinationName: targetName
+        });
+
+        const emsSource = map.current.getSource('emergency-path');
+        if (emsSource) {
+          emsSource.setData({
+            type: 'Feature',
+            geometry: {
+              type: 'LineString',
+              coordinates: route.coordinates
+            },
+            properties: {
+              distanceKm: route.distanceKm,
+              durationMin: route.durationMinutes
+            }
+          });
+        }
+
+        // Fit map bounds smoothly along the calculated emergency path
+        if (route.coordinates && route.coordinates.length > 1) {
+          const bounds = route.coordinates.reduce((acc, coord) => {
+            return [
+              [Math.min(acc[0][0], coord[0]), Math.min(acc[0][1], coord[1])],
+              [Math.max(acc[1][0], coord[0]), Math.max(acc[1][1], coord[1])]
+            ];
+          }, [[route.coordinates[0][0], route.coordinates[0][1]], [route.coordinates[0][0], route.coordinates[0][1]]]);
+
+          map.current.fitBounds(bounds, {
+            padding: { top: 90, bottom: 90, left: 380, right: 90 },
+            maxZoom: 16.5,
+            duration: 1200
+          });
+        }
+      })
+      .catch(err => {
+        console.error('Failed to compute EMS fastest route:', err);
+      })
+      .finally(() => {
+        if (isSubscribed) setEmsRoutingLoading(false);
+      });
+
+    return () => {
+      isSubscribed = false;
+    };
+  }, [isEmergencyActive, emsOriginHub, emsDestinationId, emsCustomTarget, mapLoaded]);
 
   // 6. Citizen Public Grievance Markers Synchronization on 3D Map
   useEffect(() => {
@@ -1774,9 +1898,156 @@ const App = () => {
                   <Flame size={20}/> Fire Hydrants
                 </button>
                 <button className={`action-btn ${isEmergencyActive ? 'active' : ''}`} onClick={() => setIsEmergencyActive(!isEmergencyActive)}>
-                  <Navigation size={20}/> EMS Strategy
+                  <Navigation size={20}/> EMS Fastest Route
                 </button>
               </div>
+
+              {/* Dynamic Google Maps-Style Fastest EMS Navigation Console */}
+              {isEmergencyActive && (
+                <div style={{ marginTop: '16px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '14px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <div style={{ background: '#10b981', color: '#fff', borderRadius: '8px', padding: '4px 6px', display: 'flex', alignItems: 'center' }}>
+                        <Navigation size={14} />
+                      </div>
+                      <span style={{ fontSize: '13px', fontWeight: 800, color: '#0f172a' }}>Google Maps Fast Route Router</span>
+                    </div>
+                    {emsRoutingLoading && (
+                      <span style={{ fontSize: '11px', color: '#059669', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <Loader2 size={12} className="spin" /> Calculating...
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Origin EMS Station Selector */}
+                  <div style={{ marginBottom: '10px' }}>
+                    <label style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.5px', color: '#64748b', fontWeight: 700, display: 'block', marginBottom: '4px' }}>
+                      Dispatch Station / Ambulatory Hub
+                    </label>
+                    <select 
+                      value={emsOriginHub} 
+                      onChange={e => {
+                        setEmsOriginHub(e.target.value);
+                      }}
+                      style={{ width: '100%', padding: '7px 10px', fontSize: '12px', borderRadius: '8px', border: '1px solid #cbd5e1', background: '#fff', color: '#0f172a', fontWeight: 600 }}
+                    >
+                      {EMS_HUBS.map(hub => (
+                        <option key={hub.id} value={hub.id}>{hub.name} ({hub.type})</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Destination Target Selector */}
+                  <div style={{ marginBottom: '12px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                      <label style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.5px', color: '#64748b', fontWeight: 700 }}>
+                        Target Emergency Destination
+                      </label>
+                      {emsCustomTarget && (
+                        <button 
+                          onClick={() => setEmsCustomTarget(null)}
+                          style={{ fontSize: '10px', color: '#ef4444', background: 'none', border: 'none', cursor: 'pointer', padding: 0, textDecoration: 'underline' }}
+                        >
+                          Reset to Presets
+                        </button>
+                      )}
+                    </div>
+                    {emsCustomTarget ? (
+                      <div style={{ background: '#ecfdf5', border: '1px solid #a7f3d0', padding: '6px 10px', borderRadius: '8px', fontSize: '11px', color: '#065f46', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <MapPin size={12} color="#10b981" />
+                        <span>Pinned Custom Location: [{emsCustomTarget[0].toFixed(4)}, {emsCustomTarget[1].toFixed(4)}]</span>
+                      </div>
+                    ) : (
+                      <select 
+                        value={emsDestinationId} 
+                        onChange={e => setEmsDestinationId(e.target.value)}
+                        style={{ width: '100%', padding: '7px 10px', fontSize: '12px', borderRadius: '8px', border: '1px solid #cbd5e1', background: '#fff', color: '#0f172a', fontWeight: 600 }}
+                      >
+                        {EMS_DESTINATIONS.map(d => (
+                          <option key={d.id} value={d.id}>{d.name} • {d.category}</option>
+                        ))}
+                      </select>
+                    )}
+                  </div>
+
+                  {/* Route Telemetry Box (ETA, Shortest Distance, Priority Siren) */}
+                  {emsRouteResult && (
+                    <div style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '10px', padding: '12px', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', borderBottom: '1px solid #f1f5f9', paddingBottom: '8px', marginBottom: '8px' }}>
+                        <div>
+                          <div style={{ fontSize: '22px', fontWeight: 900, color: '#059669', lineHeight: 1 }}>
+                            {emsRouteResult.durationMinutes} <span style={{ fontSize: '13px', fontWeight: 600, color: '#10b981' }}>min</span>
+                          </div>
+                          <div style={{ fontSize: '11px', color: '#64748b', marginTop: '2px' }}>
+                            Fastest corridor via OSRM Live Road Graph
+                          </div>
+                        </div>
+                        <div style={{ textAlign: 'right' }}>
+                          <div style={{ fontSize: '14px', fontWeight: 800, color: '#1e293b' }}>
+                            {emsRouteResult.distanceKm} km
+                          </div>
+                          <div style={{ fontSize: '11px', color: '#059669', fontWeight: 700 }}>
+                            ETA: {emsRouteResult.etaFormatted}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px', color: '#047857', background: '#ecfdf5', padding: '6px 8px', borderRadius: '6px', marginBottom: '10px' }}>
+                        <span style={{ fontSize: '14px' }}>🚨</span>
+                        <span><b>Live Siren Corridor</b>: Signal Pre-Emption Active</span>
+                      </div>
+
+                      {/* Turn-by-Turn Accordion Button */}
+                      {emsRouteResult.steps && emsRouteResult.steps.length > 0 && (
+                        <div>
+                          <button
+                            onClick={() => setShowTurnByTurn(!showTurnByTurn)}
+                            style={{
+                              width: '100%',
+                              padding: '6px 10px',
+                              background: '#f8fafc',
+                              border: '1px solid #e2e8f0',
+                              borderRadius: '6px',
+                              fontSize: '11px',
+                              fontWeight: 700,
+                              color: '#334155',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'space-between',
+                              cursor: 'pointer'
+                            }}
+                          >
+                            <span>Turn-by-Turn Navigation Steps ({emsRouteResult.steps.length})</span>
+                            <ChevronRight size={14} style={{ transform: showTurnByTurn ? 'rotate(90deg)' : 'none', transition: 'transform 0.2s' }} />
+                          </button>
+
+                          {showTurnByTurn && (
+                            <div style={{ maxHeight: '180px', overflowY: 'auto', marginTop: '8px', paddingRight: '4px' }}>
+                              {emsRouteResult.steps.map((st, sIdx) => (
+                                <div key={sIdx} style={{ display: 'flex', gap: '8px', fontSize: '11px', padding: '5px 0', borderBottom: '1px dashed #f1f5f9' }}>
+                                  <div style={{ width: '18px', height: '18px', borderRadius: '50%', background: '#dcfce7', color: '#166534', fontSize: '10px', fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                                    {sIdx + 1}
+                                  </div>
+                                  <div style={{ flex: 1, color: '#1e293b' }}>
+                                    {st.instruction}
+                                    <div style={{ fontSize: '10px', color: '#94a3b8' }}>
+                                      {st.distance}m • ~{Math.round(st.duration)}s
+                                    </div>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  <div style={{ marginTop: '10px', fontSize: '10px', color: '#64748b', textAlign: 'center' }}>
+                    💡 <em>Click any location on the 3D map while EMS mode is active to instantly route from nearest depot.</em>
+                  </div>
+                </div>
+              )}
             </div>
           )}
 
